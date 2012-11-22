@@ -1,0 +1,46 @@
+Kartanos!
+
+here are the files to lex any Intel format .HEX "hexfile"
+
+this hexfile is the standard machinecode input file for both PICs and AVRs!
+I used JLex to generate the lexer. This lexer has the addition neat feature
+in that it checks the 'checksum' at the end of each line, to ensure that
+the assembler did the proper job (of course this should never be a problem)
+
+1.) copy the contents of this jar file into your VINCE directory.
+2.) compile all the java files: javac *.java
+3.) type: java hexFileTokenizer FIRSTAP.HEX
+
+watch the magic unfold....
+
+i've included a small hexfile application FIRSTAP.HEX (for a PIC actually) 
+to demonstrate the lexer - you can delete that later if you want!
+
+i've also included the 'hexfile.lex' file just in case you want to tweak the lexer 
+further, otherwise, just delete the following files (AFTER you've compiled everything!)
+
+- hexfile.lex
+- hexfile.lex.java
+- sym.java
+- the entire JLex folder
+
+the class files will then be stand alone....
+
+have a look in hexFileTokenizer.java to work out how to use the lexer in the emulator.
+
+just to explain the token#3, (i had to read this a number of times to understand it...)
+The same story goes for programming AVRs.
+
+"After each instruction is loaded into the PIC, an internal counter is incremented.
+When a line is finished, this counter is usually at the correct value for the next line,
+but if it is not, then it is incremented until it is the same as the line's starting address.
+This means that if gaps are in the application, the addresses will be left unprogrammed."
+		-Myke Predko, "Programming and Customizing PICMicro Microcontrollers"
+
+let me know about any bugs which crop up!
+
+cheers
+
+Mafaga!
+
+ 

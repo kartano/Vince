@@ -1,0 +1,115 @@
+project Vince
+
+DOCUMENT VERSION: 1.3
+DOCUMENT DATE: 29/06/2003
+
+"...spaghetti." - Vince.
+
+DOCUMENT CHANGES HISTORY
+======== ======= =======
+1.3, 29/06/2003         -       Added info about AVRA
+1.2, 09/05/2003         -       More minor additions to website doco list
+1.1, 04/05/2003		-	Minor additions to website doco list
+1.0, 5/4/2003		-	initial draft written to get ball rolling...
+
+THE TEAM
+=== ====
+- Paul Pearce
+- Craig Eales 
+- Simon Mitchell (primary bootstrap and BoxTroll OS development)
+
+EXTERNAL DOCUMENTATION
+======== =============
+AVR microcontroller and related
+	(website)
+        [Assem. Code tute] - http://www.avr-asm-tutorial.net/avr_en/index.html
+	[Product Card] -http://www.atmel.com/dyn/products/product_card.asp?family_id=607&family_name=AVR+8%2DBit+RISC+&part_id=2000
+	[Data Sheets] -http://www.atmel.com/products/prod200.htm
+	[Application Notes] -http://www.atmel.com/products/prod201.htm
+	[Support Tools] -http://www.atmel.com/products/prod202.htm
+	[Software] -http://www.atmel.com/products/prod203.htm
+	[Reference Library] -http://www.atmel.com/products/prod204.htm
+	(books)
+	"Programming and Customizing the AVR Microcontroller" Gadre, Dhananjay V. McGraw-Hill, Sydney 2001
+
+AVRA assembler
+        (website)  AVRA project homepage http://sourceforge.net/projects/avra
+
+PICMicro(R) microcontroller and related
+	(website)
+	[MicroChip Technology Inc.] - http://microchip.com
+	[Resource page listing ~700] - http://www.geocities.com/Silicon Valley/Way/5807
+	[Composite Video Generation] - http://www.efd.lth.se/~e96rg/pic.html
+	[Math algorithms] - http://www.dattalo.com/technical/software/software.html
+	(books)
+	"Programming and Customizing the PICMicro(R) Microcontroller Predko, Myke, McGraw-Hill, Sydney 2002
+	
+Misc.
+	(website)
+	[Hardware FAQ] - http:paranoia.com/~filipg/HTML/LINK/LINK_IN.html
+	(books)
+	"Electronics - 2nd Edition" Hambley, Allan R. Prentice-Hall, Sydney 2000
+	"Computer Systems" Knight, David; Department of Computer Science, Adelaide University, Adelaide 2002
+	"Microcomputer Systems" Liebelt, M.J. School of Electrical and Electronic Engineering, Adelaide University, Adelaide 2002
+	
+Related Projects
+	Dodgy C64 Assembler (spec.txt v1.4) - a shelved project for which it is hoped can be ultimately 
+					      redeveloped for Vince. 
+	
+
+PROPOSED FEATURES
+======== ========
+
+	Design summary: Modular MiniComputer - each distinct component of computer handled by hardware.
+			Capable of being built with off-the-shelf components of wide availability
+			
+(a) HARDWARE COMPONENTS
+
+	- Main module (basically a memory manager)
+		- AVR Microcontroller/Motorola 680x0 processor
+		- indeed AVRmega suggested due to greatly enhanced memory capacity (inc. external SRAM)
+	- Sub modules
+		-> PIC controlled I/O modules
+		        - video output via PAL/NTSC composite colour signal
+			- standard PC AT keyboard input
+		-> Register Memory issues:  - capacity
+			  	      	    - access (serial,parallel)
+			  	  	    - type (ROM, RAM)
+		-> Disk Memory -  (ie CD or floppy) - would be nice...
+	- Power supply
+		-> dependent upon module ie - 5VDC standard for microcontroller
+					    - 12VDC for video modulator circuity...
+		-> external (ie Wallwart) or internal (ie inbuilt switchmode supply..) 
+	- Reset Circuitry
+	- Clock Circuitry
+	- Programming Port for [Primary Bootstrap Reprogram]
+		-> this could be serial or parallel technique
+		-> Connection to PC either serial or parallel (not to be confused with above)
+	
+(b) SOFTWARE:
+
+	- Primary bootstrap installed in FLASH in main control module.
+	  -> carries out necessary hardware initialisations at startup (module synchronization etc)
+	  -> loads BoxTroll OS from EEPROM/or perhaps disk memory (ie floppy) at startup
+	  -> would be programmed in serially or in parallel with a device programmer 
+	     or with possible built-in programming module.
+	- BoxTroll OS then manages all transfers to and from SRAM required by I/O modules etc
+	- MiniTroll programs programmed into each seperate I/O controller (ie PIC assembly),
+	  which are not expected to be changed once installed.
+	- PC program to download machineCode file to main control module
+	  -> is either provided, or if necessary, written specifically for Vince aka Dodgy
+
+FURTHER PROPOSED FEATURES FOR CONSIDERATION
+======= ======== ======== === =============
+- I/O module: stepper/DC motor output control module
+- I/O module: mouse input
+- One unified programming port with multi-switch to select between [Primary Bootstrap Reprogram] and 
+  seperate [MiniTroll Reprogram]s
+
+TO BE DONE
+== == ====
+- specification and selection of hardware for each module
+- design and specification of module integration
+- Vince machine upper limits and capacity based upon cost/part availability
+- develop a communications standard throughout the design for ease of modularity
+- and more.....
